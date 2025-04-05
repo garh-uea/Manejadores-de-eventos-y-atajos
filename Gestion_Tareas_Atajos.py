@@ -8,7 +8,6 @@ var_categoria = None
 fecha_tarea = None
 tree_tareas = None
 
-
 # Función para mostrar un mensaje emergente al pasar el cursor
 def mostrar_mensaje(evento, widget, texto):
     global ventana_emergente
@@ -26,14 +25,12 @@ def mostrar_mensaje(evento, widget, texto):
     etiqueta = ttk.Label(ventana_emergente, text=texto, background="#ffffe0", relief="solid", borderwidth=1)
     etiqueta.pack()
 
-
 # Función para ocultar el mensaje emergente cuando el cursor sale
 def ocultar_mensaje(evento):
     global ventana_emergente
     if ventana_emergente:
         ventana_emergente.destroy()
         ventana_emergente = None
-
 
 # Función para aplicar estilos a los widgets
 def configurar_estilos():
@@ -42,7 +39,6 @@ def configurar_estilos():
     estilo.configure("TLabel", font=("Arial", 10))
     estilo.configure("TFrame", background="#f0f0f0")
     estilo.configure("TCombobox", padding=5)
-
 
 # Función que asigna atajos de teclado a funciones específicas
 def configurar_atajos(root):
@@ -56,7 +52,6 @@ def configurar_atajos(root):
 def añadir_mensaje_emergente(widget, texto):
     widget.bind("<Enter>", lambda e: mostrar_mensaje(e, widget, texto))
     widget.bind("<Leave>", ocultar_mensaje)
-
 
 # Función para añadir una nueva tarea a la lista
 def añadir_tarea(event=None):
@@ -74,7 +69,6 @@ def añadir_tarea(event=None):
     tree_tareas.tag_configure("pendiente", background="#ffdddd")  # Aplica color a las tareas pendientes
     var_nueva_tarea.set("")  # Limpia el campo de entrada
 
-
 # Función para marcar una tarea como completada
 def marcar_completada():
     seleccion = tree_tareas.selection()  # Obtiene la tarea seleccionada
@@ -87,7 +81,6 @@ def marcar_completada():
     # Actualiza el estado a "Completada"
     tree_tareas.item(item, values=("Completada", valores[1], valores[2], valores[3]), tags=("completada",))
     tree_tareas.tag_configure("completada", background="#d0ffd0")  # Aplica color a tareas completadas
-
 
 # Función para editar una tarea existente
 def editar_tarea():
@@ -113,7 +106,6 @@ def eliminar_tarea():
     if seleccion:
         if messagebox.askyesno("Confirmación", "¿Está seguro de que desea eliminar esta tarea?"):
             tree_tareas.delete(seleccion[0])  # Elimina la fila seleccionada
-
 
 # Función principal para construir la interfaz
 def crear_interfaz(root):
@@ -205,7 +197,6 @@ def crear_interfaz(root):
     btn_eliminar = ttk.Button(frame_botones, text="Eliminar Tarea", command=eliminar_tarea)
     btn_eliminar.pack(side=tk.LEFT, padx=5)
     añadir_mensaje_emergente(btn_eliminar, "Atajo: Delete")
-
 
 # Inicia la aplicación
 ventana = tk.Tk()
